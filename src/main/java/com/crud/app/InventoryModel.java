@@ -27,6 +27,10 @@ public class InventoryModel {
         return itemId;
     }
 
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+    
     public String getName() {
         return name;
     }

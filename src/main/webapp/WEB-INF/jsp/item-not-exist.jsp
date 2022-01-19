@@ -38,7 +38,7 @@
             <h1>Inventory Tracking Application</h1>
         </div>
         <div>
-            <h4>The item you are trying edit/delete does not exist.</h4>
+            <h4>The item you are trying edit does not exist.</h4>
         </div>
     </body>
 </html>

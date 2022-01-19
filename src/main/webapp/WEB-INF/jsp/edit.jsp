@@ -40,7 +40,7 @@
         <div>
             <h4>Edit items</h4>
             <div class="item-form">
-                <form:form  method="PUT" action="/edit-item" modelAttribute="item">
+                <form:form  method="POST" action="/edit-item" modelAttribute="item">
                 <div class="form-group">
                     <form:label path="itemId">Item Id</form:label>
                     <form:input path="itemId" class="form-control" type="number" placeholder="Enter Item Id"/>

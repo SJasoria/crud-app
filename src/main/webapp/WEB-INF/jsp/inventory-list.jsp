@@ -43,7 +43,7 @@
                     <tr>
                         <th scope="col">Item ID #</th>
                         <th scope="col">Item Name</th>
-                        <th scope="col">Warehouse</th>
+                        <th scope="col">Count</th>
                         <th scope="col">Price</th>
                     </tr>
                 </thead>
