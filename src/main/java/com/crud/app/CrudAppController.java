@@ -4,6 +4,11 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,9 +20,11 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/")
 public class CrudAppController {
     private final InventoryRepository repository;
+    private final CSVService csvService;
     
-    CrudAppController(InventoryRepository repository) {
+    CrudAppController(InventoryRepository repository, CSVService csvService) {
         this.repository = repository;
+        this.csvService = csvService;
     }
 
     /**
@@ -115,5 +122,15 @@ public class CrudAppController {
     ItemId itemId) {
         repository.deleteByItemId(itemId.getId());
         return new ModelAndView("delete",  "itemId", new ItemId());
+    }
+
+    @GetMapping("/downloadcsv")
+    public ResponseEntity<Resource> getFile() {
+        String filename = "tutorials.csv";
+        InputStreamResource file = new InputStreamResource(csvService.load());
+        return ResponseEntity.ok()
+            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename)
+            .contentType(MediaType.parseMediaType("application/csv"))
+            .body(file);
     }
 }

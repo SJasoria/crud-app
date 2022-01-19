@@ -29,6 +29,7 @@
                             <li><a class="bold" href="${pageContext.request.contextPath}/add">Add Item</a></li>
                             <li><a class="bold" href="${pageContext.request.contextPath}/edit">Edit Item</a></li>
                             <li><a class="bold" href="${pageContext.request.contextPath}/delete">Delete Item</a></li>
+                            <li><a class="bold" href="${pageContext.request.contextPath}/downloadcsv">Download CSV</a></li>
                         </ul>
                     </div>
                 </div>

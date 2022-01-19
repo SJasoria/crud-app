@@ -5,8 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 
-import com.crud.app.util.CompositeKey;
-
 @Entity
 @IdClass(CompositeKey.class)
 public class InventoryModel {
@@ -30,7 +28,7 @@ public class InventoryModel {
     public void setItemId(Long itemId) {
         this.itemId = itemId;
     }
-    
+
     public String getName() {
         return name;
     }
