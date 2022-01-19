@@ -94,7 +94,7 @@ public class CrudAppController {
     @PostMapping("/edit-item")
     public ModelAndView editItem(@ModelAttribute InventoryModel newInventoryItem) {
         System.out.println("Inside the API");
-        return repository.findByItemId(newInventoryItem.getItemId())
+        return repository.findById(newInventoryItem.getItemId())
             .map(inventoryItem -> {
                 inventoryItem.setName(newInventoryItem.getName());
                 inventoryItem.setCount(newInventoryItem.getCount());
@@ -126,7 +126,7 @@ public class CrudAppController {
 
     @GetMapping("/downloadcsv")
     public ResponseEntity<Resource> getFile() {
-        String filename = "tutorials.csv";
+        String filename = "inventory.csv";
         InputStreamResource file = new InputStreamResource(csvService.load());
         return ResponseEntity.ok()
             .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename)

@@ -3,13 +3,11 @@ package com.crud.app;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 
 @Entity
-@IdClass(CompositeKey.class)
 public class InventoryModel {
     private @Id @GeneratedValue Long itemId;
-    private @Id String name;
+    private String name;
     private Long count;
     private Double price;
 
