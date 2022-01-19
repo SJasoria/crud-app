@@ -12,6 +12,10 @@ public class InventoryModel {
     private String warehouse;
     private Long count;
 
+    public InventoryModel(){
+
+    }
+
     public InventoryModel(String name, String warehouse, Long count) {
         this.name = name;
         this.warehouse = warehouse;

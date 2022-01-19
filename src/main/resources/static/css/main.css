@@ -1,3 +1,10 @@
-.home {
+.heading {
     padding-top: 50px;
+}
+.item-form{
+    width: 30%;
+    padding-left: 10px;
+}
+h1, h3, h4 {
+    padding-left: 10px;
 }

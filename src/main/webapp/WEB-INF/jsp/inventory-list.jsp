@@ -37,7 +37,27 @@
             <h1>Inventory Tracking Application</h1>
         </div>
         <div>
-            <h4>Please select one of the options in the navigation bar at the top to begin.</h4>
+            <h3>Inventory items:</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Item ID #</th>
+                        <th scope="col">Item Name</th>
+                        <th scope="col">Warehouse</th>
+                        <th scope="col">Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach items="${itemList}" var="item">
+                        <tr>
+                            <td><c:out value="${item.getId()}"/></td>
+                            <td><c:out value="${item.getName()}"/></td>
+                            <td><c:out value="${item.getWarehouse()}"/></td>
+                            <td><c:out value="${item.getCount()}"/></td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
         </div>
     </body>
 </html>

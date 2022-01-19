@@ -1,5 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
     <head>
         <title>Inventory Tracking - Web App</title>
@@ -37,7 +38,24 @@
             <h1>Inventory Tracking Application</h1>
         </div>
         <div>
-            <h4>Please select one of the options in the navigation bar at the top to begin.</h4>
+            <h4>Add items</h4>
+            <div class="item-form">
+                <form:form  method="POST" action="/add-to-inventory" modelAttribute="item">
+                <div class="form-group">
+                    <form:label path="name">Item Name</form:label>
+                    <form:input path="name" class="form-control" placeholder="Enter Item Name"/>
+                </div>
+                <div class="form-group">
+                    <form:label path="warehouse">Warehouse</form:label>
+                    <form:input path="warehouse" class="form-control" placeholder="Enter Warehouse"/>
+                </div>
+                <div class="form-group">
+                    <form:label path="count">Item Count</form:label>
+                    <form:input path="count" class="form-control"  type="number" placeholder="Enter Item Count"/>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                </form:form>
+            </div>
         </div>
     </body>
 </html>

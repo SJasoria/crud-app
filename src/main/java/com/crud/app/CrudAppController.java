@@ -5,12 +5,13 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/")
@@ -26,17 +27,25 @@ public class CrudAppController {
         return "home";
     }
 
-    @GetMapping("/inventory")
-    List<InventoryModel> all() {
-        return this.repository.findAll();
-    }
-    
-    @PostMapping("/inventory")
-    InventoryModel newEmployee(@RequestBody InventoryModel newInventoryItem) {
-        return repository.save(newInventoryItem);
+    @GetMapping("/inventory-list")
+    public ModelAndView inventoryList() {
+        List<InventoryModel> itemList = this.repository.findAll();
+        ModelAndView mav = new ModelAndView("inventory-list");
+        mav.addObject("itemList", itemList);
+        return mav;
     }
 
-    // Single item
+    @GetMapping("/add")
+    public ModelAndView add() {
+        ModelAndView mav = new ModelAndView("add", "item", new InventoryModel());
+        return mav;
+    }
+
+    @PostMapping(value = "/add-to-inventory")
+    public String newEmployee(@ModelAttribute("item") InventoryModel newInventoryItem) {
+        repository.save(newInventoryItem);
+        return "add";
+    }
     
     @GetMapping("/inventory/{id}")
     InventoryModel one(@PathVariable Long id) {    
