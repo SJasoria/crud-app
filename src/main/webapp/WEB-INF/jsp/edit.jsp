@@ -1,5 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
     <head>
         <title>Inventory Tracking - Web App</title>
@@ -37,27 +38,28 @@
             <h1>Inventory Tracking Application</h1>
         </div>
         <div>
-            <h3>Inventory items:</h3>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Item ID #</th>
-                        <th scope="col">Item Name</th>
-                        <th scope="col">Warehouse</th>
-                        <th scope="col">Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach items="${itemList}" var="item">
-                        <tr>
-                            <td><c:out value="${item.getItemId()}"/></td>
-                            <td><c:out value="${item.getName()}"/></td>
-                            <td><c:out value="${item.getCount()}"/></td>
-                            <td><c:out value="${item.getPrice()}"/></td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
+            <h4>Edit items</h4>
+            <div class="item-form">
+                <form:form  method="PUT" action="/edit-item" modelAttribute="item">
+                <div class="form-group">
+                    <form:label path="itemId">Item Id</form:label>
+                    <form:input path="itemId" class="form-control" type="number" placeholder="Enter Item Id"/>
+                </div>
+                <div class="form-group">
+                    <form:label path="name">New Item Name</form:label>
+                    <form:input path="name" class="form-control" placeholder="Enter Item Name"/>
+                </div>
+                <div class="form-group">
+                    <form:label path="count">Item Count</form:label>
+                    <form:input path="count" class="form-control"  type="number" placeholder="Enter Item Count"/>
+                </div>
+                <div class="form-group">
+                    <form:label path="price">Item Price</form:label>
+                    <form:input path="price" class="form-control"  type="number" step="0.01" placeholder="Enter Item Price"/>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                </form:form>
+            </div>
         </div>
     </body>
 </html>

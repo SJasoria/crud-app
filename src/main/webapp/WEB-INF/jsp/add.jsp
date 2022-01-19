@@ -27,8 +27,8 @@
                             <li><a class="bold" href="${pageContext.request.contextPath}/">Home</a></li>
                             <li><a class="bold" href="${pageContext.request.contextPath}/inventory-list">Inventory Item List</a></li>
                             <li><a class="bold" href="${pageContext.request.contextPath}/add">Add Item</a></li>
-                            <li><a class="bold">Edit Item</a></li>
-                            <li><a class="bold">Delete Item</a></li>
+                            <li><a class="bold" href="${pageContext.request.contextPath}/edit">Edit Item</a></li>
+                            <li><a class="bold" href="${pageContext.request.contextPath}/delete">Delete Item</a></li>
                         </ul>
                     </div>
                 </div>
@@ -46,12 +46,12 @@
                     <form:input path="name" class="form-control" placeholder="Enter Item Name"/>
                 </div>
                 <div class="form-group">
-                    <form:label path="warehouse">Warehouse</form:label>
-                    <form:input path="warehouse" class="form-control" placeholder="Enter Warehouse"/>
-                </div>
-                <div class="form-group">
                     <form:label path="count">Item Count</form:label>
                     <form:input path="count" class="form-control"  type="number" placeholder="Enter Item Count"/>
+                </div>
+                <div class="form-group">
+                    <form:label path="price">Item Price</form:label>
+                    <form:input path="price" class="form-control"  type="number" step="0.01" placeholder="Enter Item Price"/>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
                 </form:form>

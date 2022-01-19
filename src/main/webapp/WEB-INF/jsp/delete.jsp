@@ -1,9 +1,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
     <head>
         <title>Inventory Tracking - Web App</title>
-
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -37,27 +37,16 @@
             <h1>Inventory Tracking Application</h1>
         </div>
         <div>
-            <h3>Inventory items:</h3>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Item ID #</th>
-                        <th scope="col">Item Name</th>
-                        <th scope="col">Warehouse</th>
-                        <th scope="col">Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach items="${itemList}" var="item">
-                        <tr>
-                            <td><c:out value="${item.getItemId()}"/></td>
-                            <td><c:out value="${item.getName()}"/></td>
-                            <td><c:out value="${item.getCount()}"/></td>
-                            <td><c:out value="${item.getPrice()}"/></td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
+            <h4>Delete item</h4>
+            <div class="item-form">
+                <form:form  method="POST" action="/delete-from-inventory" modelAttribute="itemId">
+                <div class="form-group">
+                    <form:label path="id">Item ID #</form:label>
+                    <form:input path="id" class="form-control" type="number" placeholder="Enter Item ID #" required="required"/>
+                </div>
+                <button type="submit" class="btn btn-danger">Delete</button>
+                </form:form>
+            </div>
         </div>
     </body>
 </html>

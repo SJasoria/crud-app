@@ -3,27 +3,28 @@ package com.crud.app;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
+
+import com.crud.app.util.CompositeKey;
 
 @Entity
-// @IdClass(CompositeKey.class)
+@IdClass(CompositeKey.class)
 public class InventoryModel {
-    private @Id @GeneratedValue Long id;
-    private String name;
-    private String warehouse;
+    private @Id @GeneratedValue Long itemId;
+    private @Id String name;
     private Long count;
+    private Double price;
 
-    public InventoryModel(){
+    public InventoryModel(){}
 
-    }
-
-    public InventoryModel(String name, String warehouse, Long count) {
+    public InventoryModel(String name, Long count, Double price) {
         this.name = name;
-        this.warehouse = warehouse;
         this.count = count;
+        this.price = price;
     }
 
-    public Long getId() {
-        return id;
+    public Long getItemId() {
+        return itemId;
     }
 
     public String getName() {
@@ -34,19 +35,19 @@ public class InventoryModel {
         this.name = name;
     }
 
-    public String getWarehouse() {
-        return warehouse;
-    }
-
-    public void setWarehouse(String warehouse) {
-        this.warehouse = warehouse;
-    }
-
     public Long getCount() {
         return count;
     }
 
     public void setCount(Long count) {
         this.count = count;
+    }
+    
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 }

@@ -1,5 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
     <head>
         <title>Inventory Tracking - Web App</title>
@@ -37,27 +38,7 @@
             <h1>Inventory Tracking Application</h1>
         </div>
         <div>
-            <h3>Inventory items:</h3>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Item ID #</th>
-                        <th scope="col">Item Name</th>
-                        <th scope="col">Warehouse</th>
-                        <th scope="col">Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach items="${itemList}" var="item">
-                        <tr>
-                            <td><c:out value="${item.getItemId()}"/></td>
-                            <td><c:out value="${item.getName()}"/></td>
-                            <td><c:out value="${item.getCount()}"/></td>
-                            <td><c:out value="${item.getPrice()}"/></td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
+            <h4>The item you are trying edit/delete does not exist.</h4>
         </div>
     </body>
 </html>
