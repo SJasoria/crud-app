@@ -1,5 +1,5 @@
-// Author : Shruti Jasoria
-// Date : January 2022
+// This class contains the main method and runs the Spring Application
+
 package com.crud.app;
 
 import org.springframework.boot.SpringApplication;

@@ -5,6 +5,9 @@
     width: 30%;
     padding-left: 10px;
 }
+.warning{
+    color: red;
+}
 h1, h3, h4 {
     padding-left: 10px;
 }

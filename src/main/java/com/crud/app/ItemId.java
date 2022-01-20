@@ -1,3 +1,4 @@
+// This clas is utility class to run opertions requiring item id only.
 package com.crud.app;
 
 public class ItemId {

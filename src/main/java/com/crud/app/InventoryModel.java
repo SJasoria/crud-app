@@ -1,15 +1,27 @@
+// This class has the data model for invetory
+
 package com.crud.app;
+
+import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 @Entity
 public class InventoryModel {
-    private @Id @GeneratedValue Long itemId;
+    private @Id @GeneratedValue Long inventoryId;
     private String name;
     private Long count;
     private Double price;
+    @CreationTimestamp
+    private Timestamp createTime;
+    @UpdateTimestamp
+    private Timestamp lastUpdated;
 
     public InventoryModel(){}
 
@@ -19,12 +31,11 @@ public class InventoryModel {
         this.price = price;
     }
 
-    public Long getItemId() {
-        return itemId;
+    public Long getInventoryId() {
+        return inventoryId;
     }
-
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
+    public void setInventoryId(Long inventoryId) {
+        this.inventoryId = inventoryId;
     }
 
     public String getName() {
@@ -49,5 +60,21 @@ public class InventoryModel {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Timestamp getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Timestamp createTime) {
+        
+    }
+
+    public Date getLastUpdated() {
+        return lastUpdated;
+    }
+    
+    public void setLastUpdated() {
+        this.lastUpdated = new Timestamp(System.currentTimeMillis());
     }
 }

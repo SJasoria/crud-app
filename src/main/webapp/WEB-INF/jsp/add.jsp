@@ -17,21 +17,21 @@
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        </button>
                     </div>
-                    <div class="collapse navbar-collapse" id="myNavbar">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a class="bold" href="${pageContext.request.contextPath}/">Home</a></li>
-                            <li><a class="bold" href="${pageContext.request.contextPath}/inventory-list">Inventory Item List</a></li>
-                            <li><a class="bold" href="${pageContext.request.contextPath}/add">Add Item</a></li>
-                            <li><a class="bold" href="${pageContext.request.contextPath}/edit">Edit Item</a></li>
-                            <li><a class="bold" href="${pageContext.request.contextPath}/delete">Delete Item</a></li>
-                            <li><a class="bold" href="${pageContext.request.contextPath}/downloadcsv">Download CSV</a></li>
-                        </ul>
-                    </div>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a class="bold" href="${pageContext.request.contextPath}/">Home</a></li>
+                        <li><a class="bold" href="${pageContext.request.contextPath}/inventory-list">Inventory Item List</a></li>
+                        <li><a class="bold" href="${pageContext.request.contextPath}/add">Add Item</a></li>
+                        <li><a class="bold" href="${pageContext.request.contextPath}/edit">Edit Item</a></li>
+                        <li><a class="bold" href="${pageContext.request.contextPath}/delete">Delete Item</a></li>
+                        <li><a class="bold" href="${pageContext.request.contextPath}/downloadcsv">Download CSV</a></li>
+                    </ul>
                 </div>
             </nav>
         </div>
@@ -44,15 +44,15 @@
                 <form:form  method="POST" action="/add-to-inventory" modelAttribute="item">
                 <div class="form-group">
                     <form:label path="name">Item Name</form:label>
-                    <form:input path="name" class="form-control" placeholder="Enter Item Name"/>
+                    <form:input path="name" class="form-control" placeholder="Enter Item Name" required="required"/>
                 </div>
                 <div class="form-group">
                     <form:label path="count">Item Count</form:label>
-                    <form:input path="count" class="form-control"  type="number" placeholder="Enter Item Count"/>
+                    <form:input path="count" class="form-control"  type="number" placeholder="Enter Item Count" required="required"/>
                 </div>
                 <div class="form-group">
                     <form:label path="price">Item Price</form:label>
-                    <form:input path="price" class="form-control"  type="number" step="0.01" placeholder="Enter Item Price"/>
+                    <form:input path="price" class="form-control"  type="number" step="0.01" placeholder="Enter Item Price" required="required"/>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
                 </form:form>

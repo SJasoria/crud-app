@@ -1,8 +1,9 @@
+// This class contains API endpoints for CREATE, READ, UPDATE and DELETE
+// Additionally it has API endpoint to download CSV
+
 package com.crud.app;
 
 import java.util.List;
-
-import javax.transaction.Transactional;
 
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
@@ -39,7 +40,7 @@ public class CrudAppController {
 
     /**
      * API to display all the items in the list.
-     * @return inventory list view
+     * @return inventory list model and view
      */
     @GetMapping("/inventory-list")
     public ModelAndView inventoryList() {
@@ -67,23 +68,15 @@ public class CrudAppController {
     @PostMapping(value = "/add-to-inventory")
     public ModelAndView newEmployee(@ModelAttribute("item") 
         InventoryModel newInventoryItem) {
-        boolean itemExists = repository.findByName(newInventoryItem.getName())
-            .isPresent();
         ModelAndView mav;
-        if(!itemExists) {
-            repository.save(newInventoryItem);
-            mav = new ModelAndView("add", "item", new InventoryModel());
-            return mav;
-        } else {
-            mav = new ModelAndView("add-item-exists");
-            return mav;
-        }
-        
+        repository.save(newInventoryItem);
+        mav = new ModelAndView("add", "item", new InventoryModel());
+        return mav;
     }
 
     /**
      * API to display add item form
-     * @return add item model and view
+     * @return edit item model and view
      */
     @GetMapping("/edit")
     public ModelAndView edit() {
@@ -91,14 +84,20 @@ public class CrudAppController {
         return mav;
     }
     
+    /**
+     * API to edit an existinf entry. If it finds the entry for the given 
+     * inventory ID, it'll update it. Else it will re route to warning page
+     * @param newInventoryItem edit model and view or warning page
+     * @return
+     */
     @PostMapping("/edit-item")
     public ModelAndView editItem(@ModelAttribute InventoryModel newInventoryItem) {
-        System.out.println("Inside the API");
-        return repository.findById(newInventoryItem.getItemId())
+        return repository.findById(newInventoryItem.getInventoryId())
             .map(inventoryItem -> {
                 inventoryItem.setName(newInventoryItem.getName());
                 inventoryItem.setCount(newInventoryItem.getCount());
                 inventoryItem.setPrice(newInventoryItem.getPrice());
+                inventoryItem.setLastUpdated();
                 repository.save(inventoryItem);
                 ModelAndView mav 
                     = new ModelAndView("edit", "item", new InventoryModel());
@@ -110,20 +109,39 @@ public class CrudAppController {
             });
     }
     
-    @Transactional
+    /**
+     * API tp delete table entries using inventory ID number.
+     * @return delete form model and view
+     */
     @GetMapping("/delete")
     public ModelAndView delete() {
         ModelAndView mav = new ModelAndView("delete", "itemId", new ItemId());
         return mav;
     }
 
+    /**
+     * API to delete existing entries from the table. If the entry does not exist
+     * it'll redirect to the warning page.
+     * @param itemId
+     * @return delete page or warning page
+     */
     @PostMapping("/delete-from-inventory")
     public ModelAndView deleteItem(@ModelAttribute("item") 
     ItemId itemId) {
-        repository.deleteByItemId(itemId.getId());
-        return new ModelAndView("delete",  "itemId", new ItemId());
+        boolean itemExists = repository.existsById(itemId.getId());
+        if(itemExists) {
+            repository.deleteById(itemId.getId());
+            return new ModelAndView("delete",  "itemId", new ItemId());
+        } else {
+            return new ModelAndView("item-not-exist");
+        }
+        
     }
 
+    /**
+     * Calls the CSV service to download the current inventory
+     * @return CSV file
+     */
     @GetMapping("/downloadcsv")
     public ResponseEntity<Resource> getFile() {
         String filename = "inventory.csv";

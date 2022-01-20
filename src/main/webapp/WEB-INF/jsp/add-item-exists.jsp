@@ -17,21 +17,21 @@
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        </button>
                     </div>
-                    <div class="collapse navbar-collapse" id="myNavbar">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a class="bold" href="${pageContext.request.contextPath}/">Home</a></li>
-                            <li><a class="bold" href="${pageContext.request.contextPath}/inventory-list">Inventory Item List</a></li>
-                            <li><a class="bold" href="${pageContext.request.contextPath}/add">Add Item</a></li>
-                            <li><a class="bold" href="${pageContext.request.contextPath}/edit">Edit Item</a></li>
-                            <li><a class="bold" href="${pageContext.request.contextPath}/delete">Delete Item</a></li>
-                            <li><a class="bold" href="${pageContext.request.contextPath}/downloadcsv">Download CSV</a></li>
-                        </ul>
-                    </div>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a class="bold" href="${pageContext.request.contextPath}/">Home</a></li>
+                        <li><a class="bold" href="${pageContext.request.contextPath}/inventory-list">Inventory Item List</a></li>
+                        <li><a class="bold" href="${pageContext.request.contextPath}/add">Add Item</a></li>
+                        <li><a class="bold" href="${pageContext.request.contextPath}/edit">Edit Item</a></li>
+                        <li><a class="bold" href="${pageContext.request.contextPath}/delete">Delete Item</a></li>
+                        <li><a class="bold" href="${pageContext.request.contextPath}/downloadcsv">Download CSV</a></li>
+                    </ul>
                 </div>
             </nav>
         </div>
@@ -39,7 +39,7 @@
             <h1>Inventory Tracking Application</h1>
         </div>
         <div>
-            <h4>The item you are trying to add exists already. Consider editing it.</h4>
+            <h4 class="warning">The item you are trying to add exists already. Consider editing it.</h4>
         </div>
     </body>
 </html>
